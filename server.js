@@ -10,7 +10,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
         return res.status(400).send('画像がアップロードされていません');
     }
 
-    const imageUrl = `https://your-domain.com/uploads/${req.file.filename}`;
+    const imageUrl = `https://y.l4qzix.f5.si/uploads/${req.file.filename}`;
     res.json({ url: imageUrl });
 });
 
