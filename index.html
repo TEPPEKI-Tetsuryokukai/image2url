@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像URL化サービス</title>
+</head>
+<body>
+    <h1>画像アップロード</h1>
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" name="image" id="image" accept="image/*">
+        <button type="submit">アップロード</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        const form = document.getElementById('upload-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await response.json();
+            document.getElementById('result').innerText = data.url;
+        });
+    </script>
+</body>
+</html>
